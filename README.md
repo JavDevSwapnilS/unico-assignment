@@ -25,23 +25,23 @@ Exposed web services
 	(i) Exposed stateless session bean (Ejb module)
 			
 			Bean Name: 	com.unico.rest.OperationJMSRest
-			URL		 :	http://localhost:8080/unico/resources/operationjmsrest	
+			URL		 :	http://{server}:{port}/unico/resources/operationjmsrest	
       
 
 	(ii) Exposed via jax_rs (Web module)
 	
 			Class Name:	unico.rest.JMSRest
-			URL		  :http://localhost:8080/unico/resources/operationjmsrestweb
+			URL		  :http://{server}:{port}/unico/resources/operationjmsrestweb
 
 2. Soap web services
 
 	(i) Exposed stateless session bean (Ejb module)
 
 			Bean Name: 	com.unico.soap.OperationJMSSoap
-			URL		 :	http://localhost:8080/unico-ejb/OperationJMSSoap?wsdl
+			URL		 :	http://{server}:{port}/unico-ejb/OperationJMSSoap?wsdl
 			
 	(ii) Exposed via jax_rs (Web module)
 			
 			Class Name:	unico.rest.JMSRest
-			URL		  :	http://localhost:8080/unico/JMSSoap?wsdl
+			URL		  :	http://{server}:{port}/unico/JMSSoap?wsdl
 			
