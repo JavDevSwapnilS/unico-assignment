@@ -12,9 +12,9 @@
 
 ```html
 	<jms-queue name="gcdSoapQueue">
-        <entry name="jms/queue/gcdSoapQueue"/>
-        <entry name="java:jboss/exported/jms/queue/gcdSoapQueue"/>
-  </jms-queue>
+        		<entry name="jms/queue/gcdSoapQueue"/>
+        		<entry name="java:jboss/exported/jms/queue/gcdSoapQueue"/>
+  	</jms-queue>
 ```
 
 -----------------------------------------------------------------------------------
