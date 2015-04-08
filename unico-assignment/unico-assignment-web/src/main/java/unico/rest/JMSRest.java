@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package unico.rest;
 
 import java.util.ArrayList;
@@ -42,7 +37,7 @@ public class JMSRest {
     public String push(@FormParam("i1") int i1, @FormParam("i2") int i2) {
         Gcd gcd = new Gcd(i1, i2);
         try {
-            messageQueueOperation.sendMsg(gcd, myQueue, myQueueFactory);
+            messageQueueOperation.sendMessage(gcd, myQueue, myQueueFactory);
         } catch (Exception ex) {
             ex.printStackTrace();
             return "fail";
@@ -56,7 +51,7 @@ public class JMSRest {
 
     public List<Integer> list() throws Exception {
         List result = new ArrayList();
-        for (Message message : messageQueueOperation.readAllMsg(myQueue, myQueueFactory, 2)) {
+        for (Message message : messageQueueOperation.readAllMessages(myQueue, myQueueFactory)) {
             Gcd gcd = (Gcd) ((ObjectMessage) message).getObject();
             result.add(gcd.getI1());
             result.add(gcd.getI2());

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package unico.soap;
 
 import java.util.ArrayList;
@@ -37,11 +32,11 @@ public class JMSSoap {
 
     @WebMethod
     public int gcd() throws Exception {
-        Message message = messageQueueOperation.readMessage(myQueue, myQueueFactory, 1);
+        Message message = messageQueueOperation.readMessage(myQueue, myQueueFactory);
         if (message != null) {
             Gcd gcd = (Gcd) ((ObjectMessage) message).getObject();
             int gcdvalue = findGreatestCommonDivisor(gcd.getI1(), gcd.getI2());
-            messageQueueOperation.sendMsg(gcdvalue, gcdQueue, myQueueFactory);
+            messageQueueOperation.sendMessage(gcdvalue, gcdQueue, myQueueFactory);
             return gcdvalue;
         }
         return 0;
@@ -50,7 +45,7 @@ public class JMSSoap {
     @WebMethod
     public List<Integer> gcdList() throws Exception {
         List<Integer> result = new ArrayList();
-        for (Message message : messageQueueOperation.readAllMsg(gcdQueue, myQueueFactory, 2)) {
+        for (Message message : messageQueueOperation.readAllMessages(gcdQueue, myQueueFactory)) {
             ObjectMessage objectMessage = (ObjectMessage) message;
             result.add((Integer) objectMessage.getObject());
         }
@@ -61,7 +56,7 @@ public class JMSSoap {
     public int gcdSum() throws Exception {
         int sum = 0;
 
-        for (Message message : messageQueueOperation.readAllMsg(gcdQueue, myQueueFactory, 2)) {
+        for (Message message : messageQueueOperation.readAllMessages(gcdQueue, myQueueFactory)) {
             ObjectMessage objectMessage = (ObjectMessage) message;
             sum += (Integer) objectMessage.getObject();
         }

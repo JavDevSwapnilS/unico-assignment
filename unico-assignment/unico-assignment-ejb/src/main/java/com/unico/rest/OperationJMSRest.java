@@ -41,9 +41,9 @@ public class OperationJMSRest implements OperationJMSRestLocal {
     @POST
     @Consumes("application/x-www-form-urlencoded")
     public String push(@FormParam("i1") int i1, @FormParam("i2") int i2) {
-        Gcd gcd = new Gcd(i1, i2);        
+        Gcd gcd = new Gcd(i1, i2);
         try {
-            jMSOperation.sendMsg(gcd, myQueue, myQueueFactory);
+            jMSOperation.sendMessage(gcd, myQueue, myQueueFactory);
         } catch (Exception ex) {
             ex.printStackTrace();
             return "fail";
@@ -57,7 +57,7 @@ public class OperationJMSRest implements OperationJMSRestLocal {
     @Override
     public List<Integer> list() throws Exception {
         List result = new ArrayList();
-        for (Message message : jMSOperation.readAllMsg(myQueue, myQueueFactory, 2)) {
+        for (Message message : jMSOperation.readAllMessages(myQueue, myQueueFactory)) {
             Gcd gcd = (Gcd) ((ObjectMessage) message).getObject();
             result.add(gcd.getI1());
             result.add(gcd.getI2());
